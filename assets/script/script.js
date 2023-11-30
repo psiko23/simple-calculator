@@ -16,7 +16,7 @@ for (let key of keys) {
             displayInput.innerHTML = cleanInput(input);
         } else if (value == "=") {
             let result = eval(prepareInput(input));
-
+            result = roundResult(result);
             displayOutput.innerHTML = cleanOutput(result);
         } else if (value === 'brackets'){
             if (input.indexOf('(') == -1 || 
@@ -114,4 +114,10 @@ function prepareInput(input) {
         }
     }
     return inputArr.join('');
+}
+
+function roundResult(result) {
+    if (result % 1 !== 0)
+    result = Math.round(result * 10000) / 10000;
+return result;
 }
